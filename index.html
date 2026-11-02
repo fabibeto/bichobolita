@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exploradores de la Naturaleza: Bicho Bolita</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Fredoka & Quicksand for a warm, playful kid-friendly aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wood: '#8C6239',
+            woodDark: '#5C3D1E',
+            parchment: '#FBF6EE',
+            natureGreen: '#4A7C59',
+            leafGreen: '#82B84D',
+            soilBrown: '#674B39',
+            accentOrange: '#E07A5F',
+            softYellow: '#F2CC8F'
+          },
+          fontFamily: {
+            fredoka: ['Fredoka', 'sans-serif'],
+            quicksand: ['Quicksand', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #F4EAD4;
+      background-image: radial-gradient(#D6C2A1 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    h1, h2, h3, button {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Wooden Banner Effect */
+    .wood-card {
+      background: #FDFBF7;
+      border: 4px solid #785332;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 0 #543920;
+    }
+
+    .wood-header {
+      background: linear-gradient(180deg, #A07248 0%, #785332 100%);
+      border: 3px solid #543920;
+      box-shadow: 0 4px 0 #382413;
+    }
+
+    /* Animations */
+    @keyframes Wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-4deg); }
+      75% { transform: rotate(4deg); }
+    }
+    .hover-wiggle:hover {
+      animation: Wiggle 0.4s ease-in-out infinite;
+    }
+
+    /* Roll animation for Pill Bug */
+    .pill-bug-body {
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-origin: center;
+    }
+
+    .rolled-up {
+      transform: scale(0.7) rotate(360deg);
+    }
+  </style>
+</head>
+<body class="text-slate-800 pb-16 min-h-screen">
+
+  <!-- TOP HEADER CONTAINER -->
+  <header class="max-w-5xl mx-auto px-4 pt-6 pb-2 text-center">
+    <div class="wood-header text-white p-6 rounded-3xl relative overflow-hidden">
+      <div class="absolute top-2 left-4 text-3xl opacity-30">🍃</div>
+      <div class="absolute bottom-2 right-4 text-3xl opacity-30">🔍</div>
+      
+      <span class="inline-block bg-softYellow text-woodDark font-bold px-4 py-1 rounded-full text-sm sm:text-base mb-2 border-2 border-woodDark shadow">
+        Pequeñas criaturas, grandes historias ❤️
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-wide text-amber-100 drop-shadow-md">
+        Exploradores de la Naturaleza
+      </h1>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-leafGreen drop-shadow-sm mt-1">
+        🐞 BICHO BOLITA 🐞
+      </h2>
+
+      <!-- Read Aloud Controller -->
+      <div class="mt-4 flex justify-center items-center gap-3">
+        <button onclick="readText('¡Bienvenidos exploradores! Vamos a descubrir los secretos del bicho bolita en familia.')" 
+                class="bg-amber-400 hover:bg-amber-300 text-woodDark font-bold py-2 px-5 rounded-full flex items-center gap-2 shadow-md transition transform active:scale-95 text-base sm:text-lg border-2 border-woodDark">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3.224v13.552a.5.5 0 01-.814.39L4.62 13.5H2.5A1.5 1.5 0 011 12V8a1.5 1.5 0 011.5-1.5h2.12l4.566-3.664a.5.5 0 01.814.388zM16 10a6 6 0 00-2.5-4.88.75.75 0 00-.832 1.252A4.5 4.5 0 0114.5 10a4.5 4.5 0 01-1.832 3.628.75.75 0 10.832 1.252A6 6 0 0016 10z"/></svg>
+          <span>Escuchar Introducción</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Family Note Box -->
+    <div class="mt-4 bg-amber-50 border-2 border-dashed border-wood rounded-2xl p-4 text-center max-w-3xl mx-auto shadow-sm">
+      <p class="text-woodDark font-medium text-sm sm:text-base leading-relaxed">
+        🏡 <strong>Para investigar en familia:</strong> No se trata solo de escribir, sino de observar, tocar, experimentar y aprender juntos. ¡Hagan click en cada cuadro interactivo!
+      </p>
+    </div>
+  </header>
+
+  <!-- MAIN INTERACTIVE GRID CONTENT -->
+  <main class="max-w-5xl mx-auto px-4 mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- SECCIÓN 1: ¿DÓNDE VIVE? -->
+    <section class="wood-card p-5 relative overflow-hidden flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start">
+          <span class="bg-natureGreen text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-xl shadow">1</span>
+          <button onclick="readText('¿Dónde vive? Debajo de piedras, troncos, hojas y macetas. Le gustan los lugares húmedos y frescos.')" 
+                  class="bg-amber-100 p-2 rounded-full hover:bg-amber-200 text-woodDark transition" title="Escuchar">
+            🔊
+          </button>
+        </div>
+        <h3 class="text-2xl font-bold text-natureGreen mt-1 mb-2">¿Dónde vive?</h3>
+        <p class="text-gray-700 text-sm mb-4">
+          Debajo de piedras, troncos y macetas. Le encantan los lugares <strong>húmedos y frescos</strong>.
+        </p>
+      </div>
+
+      <!-- Interactive Scene 1 -->
+      <div class="relative h-64 bg-amber-950/20 rounded-2xl border-2 border-soilBrown overflow-hidden flex items-center justify-center select-none">
+        <!-- Background Habitat elements -->
+        <div class="absolute bottom-0 w-full h-24 bg-soilBrown rounded-t-xl"></div>
+        <div class="absolute bottom-20 left-4 text-xs bg-amber-100/90 text-soilBrown font-bold px-2 py-0.5 rounded shadow">🌱 Macetas</div>
+        <div class="absolute bottom-20 right-4 text-xs bg-amber-100/90 text-soilBrown font-bold px-2 py-0.5 rounded shadow">🪵 Troncos</div>
+        <div class="absolute bottom-4 left-6 text-xs bg-amber-100/90 text-soilBrown font-bold px-2 py-0.5 rounded shadow">🍂 Hojas Húmedas</div>
+
+        <!-- Hidden Pill Bugs -->
+        <div id="bugs-container" class="absolute bottom-6 flex gap-6 items-end z-0 opacity-0 transition-opacity duration-500">
+          <svg class="w-14 h-10 hover-wiggle cursor-pointer" onclick="speakBug('¡Hola! Me gusta la sombra.')" viewBox="0 0 100 70">
+            <ellipse cx="50" cy="40" rx="35" ry="25" fill="#4A5568" />
+            <path d="M 25 35 Q 50 15 75 35" stroke="#2D3748" stroke-width="4" fill="none"/>
+            <path d="M 20 45 Q 50 25 80 45" stroke="#2D3748" stroke-width="4" fill="none"/>
+            <circle cx="28" cy="38" r="3" fill="#FFF"/>
+            <path d="M 25 30 Q 15 15 10 20" stroke="#2D3748" stroke-width="3" fill="none"/>
+          </svg>
+          <svg class="w-16 h-12 hover-wiggle cursor-pointer" onclick="speakBug('¡Aquí abajo se está fresco y lindo!')" viewBox="0 0 100 70">
+            <ellipse cx="50" cy="40" rx="40" ry="26" fill="#334155" />
+            <path d="M 20 40 Q 50 15 80 40" stroke="#1E293B" stroke-width="4" fill="none"/>
+            <circle cx="25" cy="38" r="3" fill="#FFF"/>
+            <path d="M 22 30 Q 12 15 5 20" stroke="#1E293B" stroke-width="3" fill="none"/>
+          </svg>
+        </div>
+
+        <!-- Liftable Rock Cover -->
+        <div id="rock-cover" 
+             onclick="toggleRock()" 
+             class="absolute inset-0 bg-stone-500 hover:bg-stone-400 transition-all duration-700 cursor-pointer flex flex-col items-center justify-center p-4 text-white z-10 shadow-inner group">
+          <svg class="w-24 h-24 text-stone-300 group-hover:scale-105 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19.5 9.5c-1.5-4.5-6-7.5-11.5-6-4.5 1.2-7 5.5-6 10 1 4.5 5 7.5 10.5 6.5 5-.9 8.5-6 7-10.5z"/>
+          </svg>
+          <span class="bg-amber-400 text-woodDark font-bold px-4 py-2 rounded-full shadow-lg text-sm mt-2 border-2 border-woodDark flex items-center gap-2">
+            🖐️ ¡Haz clic para levantar la piedra!
+          </span>
+        </div>
+      </div>
+      <p id="rock-hint" class="text-xs text-center text-gray-500 mt-2 font-bold">¡Haz click sobre la piedra para mirar abajo!</p>
+    </section>
+
+    <!-- SECCIÓN 2: ¿QUÉ COME? -->
+    <section class="wood-card p-5 relative overflow-hidden flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start">
+          <span class="bg-natureGreen text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-xl shadow">2</span>
+          <button onclick="readText('¿Qué come? Hojas secas, restos de plantas y materia en descomposición. ¡Ayuda a limpiar el jardín!')" 
+                  class="bg-amber-100 p-2 rounded-full hover:bg-amber-200 text-woodDark transition" title="Escuchar">
+            🔊
+          </button>
+        </div>
+        <h3 class="text-2xl font-bold text-natureGreen mt-1 mb-2">¿Qué come?</h3>
+        <p class="text-gray-700 text-sm mb-3">
+          Le encantan las <strong>hojas secas</strong> y restos de plantas. ¡Dale de comer seleccionando el alimento correcto!
+        </p>
+      </div>
+
+      <!-- Feeding Interactive Arena -->
+      <div class="bg-amber-100/60 rounded-2xl border-2 border-amber-300 p-4 relative flex flex-col items-center min-h-[220px] justify-between">
+        
+        <!-- Animated Bug Eater -->
+        <div id="eating-bug" class="transition-transform duration-500 my-2">
+          <svg class="w-24 h-16" viewBox="0 0 100 70">
+            <ellipse cx="50" cy="40" rx="38" ry="25" fill="#475569" />
+            <!-- Segments -->
+            <path d="M 20 40 Q 50 20 80 40" stroke="#1E293B" stroke-width="4" fill="none"/>
+            <path d="M 30 42 Q 50 22 70 42" stroke="#1E293B" stroke-width="4" fill="none"/>
+            <!-- Eye -->
+            <circle cx="25" cy="36" r="3" fill="#FFF"/>
+            <circle cx="24" cy="36" r="1.5" fill="#000"/>
+            <!-- Antennae -->
+            <path id="antenna-left" d="M 20 30 Q 10 15 5 22" stroke="#1E293B" stroke-width="3" fill="none"/>
+            <path id="mouth" d="M 18 45 Q 22 48 26 45" stroke="#1E293B" stroke-width="3" fill="none"/>
+          </svg>
+        </div>
+
+        <!-- Feedback Speech Bubble -->
+        <div id="food-feedback" class="bg-white border-2 border-woodDark px-3 py-1 rounded-full text-xs font-bold text-woodDark mb-2 shadow-sm text-center">
+          ¡Tengo hambre! ¿Qué me das de comer? 🍂
+        </div>
+
+        <!-- Food Options Buttons -->
+        <div class="grid grid-cols-4 gap-2 w-full">
+          <button onclick="feedBug(true, '🍂 Hojas Secas')" class="bg-amber-200 hover:bg-amber-300 border-2 border-amber-600 rounded-xl p-2 text-center text-xs font-bold shadow transform active:scale-95 transition">
+            🍂<br>Hoja Seca
+          </button>
+          <button onclick="feedBug(true, '🌿 Planta Vieja')" class="bg-emerald-200 hover:bg-emerald-300 border-2 border-emerald-600 rounded-xl p-2 text-center text-xs font-bold shadow transform active:scale-95 transition">
+            🌿<br>Resto Vegetal
+          </button>
+          <button onclick="feedBug(false, '🥤 Plástico')" class="bg-red-100 hover:bg-red-200 border-2 border-red-400 rounded-xl p-2 text-center text-xs font-bold shadow transform active:scale-95 transition">
+            🥤<br>Plástico
+          </button>
+          <button onclick="feedBug(false, '💎 Piedra')" class="bg-slate-200 hover:bg-slate-300 border-2 border-slate-400 rounded-xl p-2 text-center text-xs font-bold shadow transform active:scale-95 transition">
+            💎<br>Piedra
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: ¿CÓMO SE DEFIENDE? -->
+    <section class="wood-card p-5 relative overflow-hidden flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start">
+          <span class="bg-natureGreen text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-xl shadow">3</span>
+          <button onclick="readText('¿Cómo se defiende? Se hace una bolita perfecta cuando siente peligro para proteger su cuerpo.')" 
+                  class="bg-amber-100 p-2 rounded-full hover:bg-amber-200 text-woodDark transition" title="Escuchar">
+            🔊
+          </button>
+        </div>
+        <h3 class="text-2xl font-bold text-natureGreen mt-1 mb-2">¿Cómo se defiende?</h3>
+        <p class="text-gray-700 text-sm mb-3">
+          Cuando siente peligro, ¡se convierte en una bola blindada! 🛡️
+        </p>
+      </div>
+
+      <!-- Interactive Defense Arena -->
+      <div class="bg-amber-50 rounded-2xl border-2 border-amber-200 p-4 flex flex-col items-center justify-center min-h-[220px]">
+        
+        <!-- Interactive Pill Bug Object -->
+        <div id="defensive-bug-container" onclick="triggerDefense()" class="cursor-pointer group relative">
+          <div id="pill-bug-svg-wrap" class="pill-bug-body p-4">
+            <svg id="defense-svg" class="w-32 h-24" viewBox="0 0 120 80">
+              <g id="open-bug">
+                <!-- Body Base -->
+                <path d="M 20 60 C 20 20, 100 20, 100 60 Z" fill="#475569" stroke="#1E293B" stroke-width="4"/>
+                <!-- Segments lines -->
+                <path d="M 35 30 Q 38 60 40 60" stroke="#1E293B" stroke-width="3" fill="none"/>
+                <path d="M 50 24 Q 53 60 55 60" stroke="#1E293B" stroke-width="3" fill="none"/>
+                <path d="M 68 24 Q 70 60 72 60" stroke="#1E293B" stroke-width="3" fill="none"/>
+                <path d="M 85 30 Q 86 60 87 60" stroke="#1E293B" stroke-width="3" fill="none"/>
+                <!-- Eye & Antenna -->
+                <circle cx="28" cy="45" r="3.5" fill="#FFF"/>
+                <circle cx="27" cy="45" r="1.5" fill="#000"/>
+                <path d="M 22 42 Q 10 30 5 35" stroke="#1E293B" stroke-width="3" fill="none"/>
+              </g>
+              <!-- Rolled Up State (Hidden by default) -->
+              <g id="rolled-bug" class="hidden">
+                <circle cx="60" cy="40" r="35" fill="#334155" stroke="#0F172A" stroke-width="5"/>
+                <circle cx="60" cy="40" r="26" fill="none" stroke="#475569" stroke-width="4" stroke-dasharray="8 4"/>
+                <path d="M 35 40 Q 60 15 85 40" stroke="#0F172A" stroke-width="3" fill="none"/>
+              </g>
+            </svg>
+          </div>
+          <!-- Click Hand Hint -->
+          <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-bounce shadow">
+            ¡Tócame! 👈
+          </span>
+        </div>
+
+        <!-- Timer / Status Display -->
+        <div class="mt-2 text-center">
+          <button id="defense-btn" onclick="triggerDefense()" class="bg-accentOrange hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full shadow-md border-2 border-woodDark transition active:scale-95 text-sm">
+            🚨 ¡Simular Peligro!
+          </button>
+          <p id="safety-timer" class="text-xs font-bold text-woodDark mt-2 h-4">
+            Toca el bicho para ver su mecanismo de defensa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: ¿AYUDA A LAS PLANTAS? -->
+    <section class="wood-card p-5 relative overflow-hidden flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start">
+          <span class="bg-natureGreen text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-xl shadow">4</span>
+          <button onclick="readText('¿Ayuda a las plantas? Sí. El bicho bolita transforma las hojas viejas en alimento rico para la tierra y las raíces.')" 
+                  class="bg-amber-100 p-2 rounded-full hover:bg-amber-200 text-woodDark transition" title="Escuchar">
+            🔊
+          </button>
+        </div>
+        <h3 class="text-2xl font-bold text-natureGreen mt-1 mb-2">¿Ayuda a las plantas?</h3>
+        <p class="text-gray-700 text-sm mb-3">
+          ¡Es un gran súper héroe del suelo! Ayuda a descomponer restos para nutrir la tierra.
+        </p>
+      </div>
+
+      <!-- Soil & Plant Simulation Arena -->
+      <div class="bg-amber-50 rounded-2xl border-2 border-amber-300 p-4 flex flex-col items-center justify-between min-h-[220px]">
+        
+        <!-- Interactive Plant graphic -->
+        <div class="w-full flex justify-around items-end h-32 relative overflow-hidden rounded-xl bg-gradient-to-b from-sky-100 to-amber-100 border border-amber-200">
+          
+          <!-- Soil Base Layer (Changes color on nutrient boost) -->
+          <div id="soil-layer" class="absolute bottom-0 w-full h-16 bg-amber-900/60 transition-colors duration-700 border-t-2 border-soilBrown"></div>
+
+          <!-- Plant SVG -->
+          <div class="z-10 flex flex-col items-center">
+            <svg id="plant-svg" class="w-20 h-24 transition-all duration-700 transform origin-bottom scale-90" viewBox="0 0 100 120">
+              <!-- Roots -->
+              <path id="plant-roots" d="M 50 80 Q 30 100 20 115 M 50 80 Q 50 105 50 118 M 50 80 Q 70 100 80 115" stroke="#78350F" stroke-width="3" fill="none"/>
+              <!-- Stem -->
+              <path d="M 50 80 Q 48 50 50 20" stroke="#15803D" stroke-width="6" fill="none"/>
+              <!-- Leaves -->
+              <path d="M 50 50 Q 20 40 25 25 Q 45 30 50 50" fill="#22C55E"/>
+              <path d="M 50 35 Q 80 25 75 10 Q 55 15 50 35" fill="#4ADE80"/>
+              <!-- Flower (Grows when nourished) -->
+              <circle id="flower-center" cx="50" cy="18" r="7" fill="#FACC15" class="transition-all duration-500 scale-75"/>
+            </svg>
+          </div>
+
+          <!-- Working Pill Bug -->
+          <div class="z-10 mb-1">
+            <svg class="w-12 h-10 hover-wiggle cursor-pointer" onclick="enrichSoil()" viewBox="0 0 100 70">
+              <ellipse cx="50" cy="40" rx="35" ry="25" fill="#475569"/>
+              <circle cx="28" cy="38" r="3" fill="#FFF"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Soil Enrichment Button -->
+        <div class="w-full text-center mt-3">
+          <button onclick="enrichSoil()" class="bg-leafGreen hover:bg-emerald-600 text-white font-bold py-2 px-5 rounded-full shadow border-2 border-woodDark transition text-xs sm:text-sm">
+            🍂 Hacer que el Bicho limpie el suelo
+          </button>
+          <p id="soil-status" class="text-xs text-woodDark font-semibold mt-1">
+            Haz clic para que trabaje compostando hojas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SECTION 5: BUENAS PRÁCTICAS VS ERRORES (QUIZ INTERACTIVO) -->
+  <section class="max-w-5xl mx-auto px-4 mt-6">
+    <div class="wood-card p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center gap-3">
+          <span class="bg-natureGreen text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-xl shadow">5</span>
+          <h3 class="text-2xl font-bold text-natureGreen">¿Cómo debemos cuidarlo? (Juego del Semáforo)</h3>
+        </div>
+        <button onclick="readText('Juego del semáforo: Selecciona verde para las buenas acciones y rojo para lo que NO debemos hacer con el bicho bolita.')" 
+                class="bg-amber-100 p-2 rounded-full hover:bg-amber-200 text-woodDark transition">
+          🔊
+        </button>
+      </div>
+
+      <p class="text-gray-700 text-sm mb-6">
+        Presiona el botón <strong>VERDE (Bien)</strong> o <strong>ROJO (Mal)</strong> para cada tarjeta de cuidado:
+      </p>
+
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        
+        <!-- Action Card 1 -->
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col justify-between items-center text-center shadow-sm">
+          <div class="text-4xl mb-2">🔍</div>
+          <h4 class="font-bold text-woodDark text-base mb-3">Observarlo con cuidado y lupa</h4>
+          <div class="flex gap-3 w-full">
+            <button onclick="checkAnswer(this, true)" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 rounded-xl border-2 border-emerald-700 shadow">🟢 BIEN</button>
+            <button onclick="checkAnswer(this, false)" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl border-2 border-rose-700 shadow">🔴 MAL</button>
+          </div>
+          <div class="feedback-msg mt-2 font-bold text-xs h-4"></div>
+        </div>
+
+        <!-- Action Card 2 -->
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col justify-between items-center text-center shadow-sm">
+          <div class="text-4xl mb-2">👟</div>
+          <h4 class="font-bold text-woodDark text-base mb-3">Aplastarlo con el zapato</h4>
+          <div class="flex gap-3 w-full">
+            <button onclick="checkAnswer(this, false)" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 rounded-xl border-2 border-emerald-700 shadow">🟢 BIEN</button>
+            <button onclick="checkAnswer(this, true)" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl border-2 border-rose-700 shadow">🔴 MAL</button>
+          </div>
+          <div class="feedback-msg mt-2 font-bold text-xs h-4"></div>
+        </div>
+
+        <!-- Action Card 3 -->
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col justify-between items-center text-center shadow-sm">
+          <div class="text-4xl mb-2">☀️</div>
+          <h4 class="font-bold text-woodDark text-base mb-3">Dejarlo bajo el sol directo</h4>
+          <div class="flex gap-3 w-full">
+            <button onclick="checkAnswer(this, false)" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 rounded-xl border-2 border-emerald-700 shadow">🟢 BIEN</button>
+            <button onclick="checkAnswer(this, true)" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl border-2 border-rose-700 shadow">🔴 MAL</button>
+          </div>
+          <div class="feedback-msg mt-2 font-bold text-xs h-4"></div>
+        </div>
+
+        <!-- Action Card 4 -->
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col justify-between items-center text-center shadow-sm">
+          <div class="text-4xl mb-2">🏡</div>
+          <h4 class="font-bold text-woodDark text-base mb-3">Devolverlo a su hogar húmedo</h4>
+          <div class="flex gap-3 w-full">
+            <button onclick="checkAnswer(this, true)" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 rounded-xl border-2 border-emerald-700 shadow">🟢 BIEN</button>
+            <button onclick="checkAnswer(this, false)" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl border-2 border-rose-700 shadow">🔴 MAL</button>
+          </div>
+          <div class="feedback-msg mt-2 font-bold text-xs h-4"></div>
+        </div>
+
+        <!-- Action Card 5 -->
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col justify-between items-center text-center shadow-sm">
+          <div class="text-4xl mb-2">💧</div>
+          <h4 class="font-bold text-woodDark text-base mb-3">Buscarlo en lugares húmedos</h4>
+          <div class="flex gap-3 w-full">
+            <button onclick="checkAnswer(this, true)" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 rounded-xl border-2 border-emerald-700 shadow">🟢 BIEN</button>
+            <button onclick="checkAnswer(this, false)" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl border-2 border-rose-700 shadow">🔴 MAL</button>
+          </div>
+          <div class="feedback-msg mt-2 font-bold text-xs h-4"></div>
+        </div>
+
+        <!-- Action Card 6 -->
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col justify-between items-center text-center shadow-sm">
+          <div class="text-4xl mb-2">📦</div>
+          <h4 class="font-bold text-woodDark text-base mb-3">Llevarlo lejos de su casa</h4>
+          <div class="flex gap-3 w-full">
+            <button onclick="checkAnswer(this, false)" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 rounded-xl border-2 border-emerald-700 shadow">🟢 BIEN</button>
+            <button onclick="checkAnswer(this, true)" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl border-2 border-rose-700 shadow">🔴 MAL</button>
+          </div>
+          <div class="feedback-msg mt-2 font-bold text-xs h-4"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: CUADERNO DE MINI EXPLORACIÓN EN FAMILIA (CANVAS DE DIBUJO) -->
+  <section class="max-w-5xl mx-auto px-4 mt-6">
+    <div class="wood-card p-6">
+      <div class="flex justify-between items-center mb-2">
+        <div class="flex items-center gap-3">
+          <span class="bg-natureGreen text-white font-bold w-10 h-10 rounded-full flex items-center justify-center text-xl shadow">6</span>
+          <h3 class="text-2xl font-bold text-natureGreen">Mini Exploración en Familia 🎨</h3>
+        </div>
+        <button onclick="readText('¡Cuaderno de campo! Dibuja aquí tu bicho bolita o lo que descubriste en tu jardín.')" 
+                class="bg-amber-100 p-2 rounded-full hover:bg-amber-200 text-woodDark transition">
+          🔊
+        </button>
+      </div>
+      <p class="text-gray-700 text-sm mb-4">
+        ¡Mirá, dibujá y contá lo que viste! Usa tus dedos o el mouse para dibujar tu propio bicho bolita.
+      </p>
+
+      <!-- Drawing Canvas Studio -->
+      <div class="flex flex-col md:flex-row gap-4 items-center">
+        <!-- Palette / Tools -->
+        <div class="flex md:flex-col gap-2 bg-amber-100 p-3 rounded-2xl border-2 border-amber-300 w-full md:w-auto justify-center">
+          <button onclick="setPenColor('#334155')" class="w-8 h-8 rounded-full bg-slate-700 border-2 border-white shadow hover:scale-110 transition"></button>
+          <button onclick="setPenColor('#674B39')" class="w-8 h-8 rounded-full bg-amber-800 border-2 border-white shadow hover:scale-110 transition"></button>
+          <button onclick="setPenColor('#82B84D')" class="w-8 h-8 rounded-full bg-lime-600 border-2 border-white shadow hover:scale-110 transition"></button>
+          <button onclick="setPenColor('#E07A5F')" class="w-8 h-8 rounded-full bg-orange-600 border-2 border-white shadow hover:scale-110 transition"></button>
+          <button onclick="setPenColor('#F2CC8F')" class="w-8 h-8 rounded-full bg-amber-300 border-2 border-white shadow hover:scale-110 transition"></button>
+          <hr class="my-1 border-amber-300 hidden md:block">
+          <button onclick="clearCanvas()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold p-2 rounded-xl border border-rose-300">
+            🗑️ Borrar
+          </button>
+        </div>
+
+        <!-- Main Canvas Area -->
+        <div class="w-full flex-1 bg-white rounded-2xl border-4 border-amber-200 shadow-inner overflow-hidden relative">
+          <canvas id="explorer-canvas" class="w-full h-64 touch-none cursor-crosshair"></canvas>
+          <div class="absolute bottom-2 right-2 text-xs text-gray-400 pointer-events-none select-none font-bold">
+            📝 Mi Libreta de Campo
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT LOGIC AND INTERACTIVITY -->
+  <script>
+    /* ==========================================================================
+       1. WEB SPEECH SYNTHESIS (AUDIO ACCESSIBILITY FOR KIDS)
+       ========================================================================== */
+    function readText(message) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop active speech
+        const utterance = new SpeechSynthesisUtterance(message);
+        utterance.lang = 'es-ES';
+        utterance.rate = 0.95; // Slightly slower for children
+        utterance.pitch = 1.1; // Friendly pitch
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert(message);
+      }
+    }
+
+    function speakBug(text) {
+      readText(text);
+    }
+
+    /* ==========================================================================
+       2. SECCIÓN 1: LEVANTAR PIEDRA (TOGGLE ROCK)
+       ========================================================================== */
+    let rockLifted = false;
+    function toggleRock() {
+      const rock = document.getElementById('rock-cover');
+      const bugs = document.getElementById('bugs-container');
+      const hint = document.getElementById('rock-hint');
+
+      rockLifted = !rockLifted;
+      if (rockLifted) {
+        rock.style.transform = 'translateY(-100%)';
+        rock.style.opacity = '0';
+        bugs.classList.remove('opacity-0');
+        hint.innerText = "¡Encontraste los bichos bolita! Tócalos para hablar con ellos.";
+        readText("¡Sorpresa! Debajo de la piedra húmeda viven muchos bichos bolita.");
+      } else {
+        rock.style.transform = 'translateY(0)';
+        rock.style.opacity = '1';
+        bugs.classList.add('opacity-0');
+        hint.innerText = "¡Haz click sobre la piedra para mirar abajo!";
+      }
+    }
+
+    /* ==========================================================================
+       3. SECCIÓN 2: ALIMENTAR AL BICHO (FEEDING LOGIC)
+       ========================================================================== */
+    function feedBug(isGoodFood, foodName) {
+      const feedback = document.getElementById('food-feedback');
+      const eatingBug = document.getElementById('eating-bug');
+
+      if (isGoodFood) {
+        feedback.className = "bg-emerald-100 border-2 border-emerald-500 px-3 py-1 rounded-full text-xs font-bold text-emerald-800 mb-2 shadow-sm text-center";
+        feedback.innerHTML = `¡Ñam ñam! 😋 Me encanta comer ${foodName}`;
+        eatingBug.style.transform = "scale(1.15) rotate(-5deg)";
+        setTimeout(() => { eatingBug.style.transform = "scale(1) rotate(0deg)"; }, 400);
+        readText(`¡Mmm rico! El bicho bolita comió ${foodName}`);
+      } else {
+        feedback.className = "bg-rose-100 border-2 border-rose-500 px-3 py-1 rounded-full text-xs font-bold text-rose-800 mb-2 shadow-sm text-center";
+        feedback.innerHTML = `¡Nooo! 😖 El bicho bolita NO come ${foodName}`;
+        eatingBug.style.transform = "translateX(10px)";
+        setTimeout(() => { eatingBug.style.transform = "translateX(-10px)"; }, 150);
+        setTimeout(() => { eatingBug.style.transform = "translateX(0)"; }, 300);
+        readText(`No no no. El bicho bolita no puede comer ${foodName}`);
+      }
+    }
+
+    /* ==========================================================================
+       4. SECCIÓN 3: MECANISMO DE DEFENSA (ROLL UP ANIMATION & TIMER)
+       ========================================================================== */
+    let isDefending = false;
+    let timerInterval = null;
+
+    function triggerDefense() {
+      if (isDefending) return;
+
+      isDefending = true;
+      const bugWrap = document.getElementById('pill-bug-svg-wrap');
+      const openBug = document.getElementById('open-bug');
+      const rolledBug = document.getElementById('rolled-bug');
+      const btn = document.getElementById('defense-btn');
+      const timerDisplay = document.getElementById('safety-timer');
+
+      // Transform to rolled up ball
+      bugWrap.classList.add('rolled-up');
+      openBug.classList.add('hidden');
+      rolledBug.classList.remove('hidden');
+
+      btn.disabled = true;
+      btn.classList.add('opacity-50');
+
+      readText("¡Peligro! El bicho se hizo una bolita. Vamos a contar cuánto tarda en sentirse seguro.");
+
+      let seconds = 5;
+      timerDisplay.innerHTML = `⏳ Sintiéndose seguro en: <span class="text-base text-accentOrange">${seconds}</span> segundos...`;
+
+      timerInterval = setInterval(() => {
+        seconds--;
+        if (seconds > 0) {
+          timerDisplay.innerHTML = `⏳ Sintiéndose seguro en: <span class="text-base text-accentOrange">${seconds}</span> segundos...`;
+        } else {
+          clearInterval(timerInterval);
+          // Unroll Bug
+          bugWrap.classList.remove('rolled-up');
+          openBug.classList.remove('hidden');
+          rolledBug.classList.add('hidden');
+
+          timerDisplay.innerHTML = "¡Ya se siente seguro! Se vuelve a abrir. 😊";
+          btn.disabled = false;
+          btn.classList.remove('opacity-50');
+          isDefending = false;
+          readText("¡Se sintió seguro y volvió a abrirse!");
+        }
+      }, 1000);
+    }
+
+    /* ==========================================================================
+       5. SECCIÓN 4: MEJORAR EL SUELO (PLANT & SOIL ANIMATION)
+       ========================================================================== */
+    let soilNutrientLevel = 0;
+    function enrichSoil() {
+      const soil = document.getElementById('soil-layer');
+      const plant = document.getElementById('plant-svg');
+      const flower = document.getElementById('flower-center');
+      const roots = document.getElementById('plant-roots');
+      const status = document.getElementById('soil-status');
+
+      soilNutrientLevel++;
+
+      if (soilNutrientLevel % 2 === 1) {
+        soil.style.backgroundColor = "#451a03"; // Dark rich compost soil
+        plant.style.transform = "scale(1.15)";
+        flower.classList.remove('scale-75');
+        flower.classList.add('scale-125');
+        roots.setAttribute('stroke-width', '5');
+        status.innerHTML = "🌟 ¡Suelo super nutrido! La planta crece más fuerte y sana.";
+        readText("¡Excelente! El bicho creó tierra fértil y la planta crece feliz.");
+      } else {
+        soil.style.backgroundColor = "rgba(120, 53, 15, 0.6)";
+        plant.style.transform = "scale(0.9)";
+        flower.classList.remove('scale-125');
+        flower.classList.add('scale-75');
+        roots.setAttribute('stroke-width', '3');
+        status.innerHTML = "Haz clic para que trabaje compostando hojas.";
+      }
+    }
+
+    /* ==========================================================================
+       6. SECCIÓN 5: GAME TRIVIA CHECKER (GOOD VS BAD PRACTICES)
+       ========================================================================== */
+    function checkAnswer(btnElement, isCorrect) {
+      const parentCard = btnElement.closest('div.bg-amber-50');
+      const feedback = parentCard.querySelector('.feedback-msg');
+
+      if (isCorrect) {
+        feedback.className = "feedback-msg mt-2 font-bold text-xs text-emerald-600";
+        feedback.innerText = "¡CORRECTO! 🌟 ¡Muy bien!";
+        readText("¡Correcto! Esa es una excelente respuesta.");
+      } else {
+        feedback.className = "feedback-msg mt-2 font-bold text-xs text-rose-600";
+        feedback.innerText = "¡INCORRECTO! ❌ Intenta de nuevo";
+        readText("Ups, esa opción no cuida al bicho bolita.");
+      }
+    }
+
+    /* ==========================================================================
+       7. SECCIÓN 6: CANVA DRAWING PAD (MINI EXPLORACIÓN)
+       ========================================================================== */
+    const canvas = document.getElementById('explorer-canvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let currentColor = '#334155';
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      ctx.lineWidth = 4;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+    }
+
+    window.addEventListener('load', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
+
+    function setPenColor(color) {
+      currentColor = color;
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      let clientX = e.clientX;
+      let clientY = e.clientY;
+
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      }
+
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDrawing(e) {
+      isDrawing = true;
+      const pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      ctx.strokeStyle = currentColor;
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      e.preventDefault();
+      const pos = getPos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+    }
+
+    function stopDrawing() {
+      isDrawing = false;
+    }
+
+    // Mouse Events
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseleave', stopDrawing);
+
+    // Touch Events for Tablets / Phones
+    canvas.addEventListener('touchstart', startDrawing);
+    canvas.addEventListener('touchmove', draw);
+    canvas.addEventListener('touchend', stopDrawing);
+  </script>
+</body>
+</html>
